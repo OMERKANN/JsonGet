@@ -5,7 +5,7 @@ generateJoke()
 
 button.addEventListener("click", generateJoke)
 
-function generateJoke(){
+async function generateJoke(){
  
     const config = {
         headers: {
@@ -13,9 +13,9 @@ function generateJoke(){
         },
     }
 
-    fetch ('https://icanhazdadjoke.com', config)
-        .then((res) => res.json())
-        .then((data) => {
-            jokeText.innerHTML = data.joke
-        })
+    const res = await fetch ('https://icanhazdadjoke.com', config)
+        
+    const data = await res.json()
+        
+    jokeText.innerHTML = data.joke
 }
